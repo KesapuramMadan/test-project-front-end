@@ -2,8 +2,10 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-        $.ajax({
-          url: "http://localhost:8080/greeting",
+        function callBackend() {
+          var name = document.getElementById('input').value;
+          $.ajax({
+          url: "http://localhost:8080/greeting?name=" + name,
           type: "GET",
           contentType: "application/json",
           dataType: 'json',
@@ -15,9 +17,23 @@
             console.log(error);
           }
         });
+        }
+        function changeBackgroundColorToBlack() {
+          document.getElementsByTagName('body')[0].style.backgroundColor = "black";
+          document.getElementsByTagName('body')[0].style.color = "white";
+        }
+
+        function changeBackgroundColorToWhite() {
+          document.getElementsByTagName('body')[0].style.backgroundColor = "white";
+          document.getElementsByTagName('body')[0].style.color = "black";
+        }
         </script>
     </head>
     <body>
         <h1 id="dataToShow">Sometext</h1>
+        <input id="input">
+        <button onClick="callBackend()">Button</button>
+        <button onClick="changeBackgroundColorToBlack()">Black</button>
+        <button onClick="changeBackgroundColorToWhite()">White</button>
     </body>
 </html>
